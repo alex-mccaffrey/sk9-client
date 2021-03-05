@@ -10,6 +10,7 @@ import UserHome from "../UserHome/UserHome";
 import Landing from "../Landing/Landing";
 import SessionDetail from "../SessionDetail/SessionDetail";
 import EditSession from "../EditSession/EditSession";
+import FolderSessions from "../FolderSessions/FolderSessions"
 
 class App extends Component {
   constructor(props) {
@@ -51,10 +52,9 @@ class App extends Component {
   renderMainRoutes() {
     return (
       <>
-        {["/", "/folder/:folderId"].map((path) => (
-          <Route exact key={path} path={path} component={UserHome} />
-        ))}
-        <Route path="/landing" component={Landing} />
+        <Route exact path="/" component={Landing} />
+        <Route path="/user/:userId" component={UserHome} />
+        <Route exact path="/folder/:folderId" component={FolderSessions} />
         <Route path="/session/:sessionId" component={SessionDetail} />
         <Route path="/add-folder" component={AddFolder} />
         <Route path="/add-session" component={AddSession} />

@@ -1,13 +1,24 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import FolderSessions from '../FolderSessions/FolderSessions'
+import { fakeFolders } from '../App/fakeFolders'
 
 export class UserHome extends Component {
     render() {
         return (
             <main role="main">
       <header role="banner">
-        <h1>Example Folder 1</h1>
+        <h1>Check out your Folders</h1>
       </header>
-      <section>
+      {fakeFolders.map(folder => {
+        return (
+        <li key={folder.is}>
+          <Link to={`/folder/${folder.id}`}>
+            {folder.title}
+          </Link>
+        </li>)
+      })}
+      {/* <section>
         <header>
             <h2>Note 1 in Folder 1</h2>
             <p>Short description of Note 1</p>
@@ -35,7 +46,7 @@ export class UserHome extends Component {
             <h2>Example Folder 3</h2>
             <p>Short description of Folder 3</p>
         </header>
-      </section>
+      </section> */}
     </main>
         )
     }
