@@ -23,7 +23,7 @@ export class AddSession extends Component {
                 
                 <section className="form-section session-type-section">
                   <h2>Select session type</h2>
-                  <input type="radio" name="session-type" id="session-type-runaway" value="0" className="session-type-radio" checked />
+                  <input type="radio" name="session-type" id="session-type-runaway" value="0" className="session-type-radio" />
                   <label htmlFor="session-type-runaway">
                     <span>Runaway</span>
                     <p className="session-type-explanation">These are drills where the dog watches the subject runway and hide / partially hide.</p>
