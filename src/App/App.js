@@ -13,15 +13,15 @@ import EditSession from "../EditSession/EditSession";
 import FolderSessions from "../FolderSessions/FolderSessions"
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  // constructor(props) {
+  //   super(props);
+  //   };
+
+    state = {
       sessions: [],
       folders: [],
-    };
-  }
-
-
+      loggedIn: false
+    }
 
   // handleAddFolder(folder) {
   //   this.setState({
@@ -49,6 +49,13 @@ class App extends Component {
   //   });
   // }
 
+  handleLogin = () => {
+    this.setState({
+      loggedIn: true
+    })
+    
+  }
+
   renderMainRoutes() {
     return (
       <>
@@ -67,6 +74,8 @@ class App extends Component {
     const value = {
        sessions: this.state.sessions,
        folders: this.state.folders,
+       loggedIn: this.state.loggedIn,
+       login: this.handleLogin,
     //   addFolder: this.handleAddFolder,
     //   addSession: this.handleAddSession,
     //   deleteSession: this.handleDeleteSession,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import FolderSessions from '../FolderSessions/FolderSessions'
+//import FolderSessions from '../FolderSessions/FolderSessions'
 import { fakeFolders } from '../App/fakeFolders'
 
 export class UserHome extends Component {

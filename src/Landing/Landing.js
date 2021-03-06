@@ -28,7 +28,7 @@ export class landing extends Component {
         </header>
         <p>The key to SAR dog training is to consistently document your progress and pitfalls so that you can recognize patterns. SK9 provides a simple interface to track training sessions to recognize those patterns.</p>
       </section>
-      <section><LoginForm /></section>
+      <section><LoginForm/></section>
       </div>
     );
   }
