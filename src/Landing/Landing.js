@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import LoginForm from "../LoginForm/LoginForm";
 import ApiContext from "../ApiContext"
-import UserHome from "../UserHome/UserHome";
+//import UserHome from "../UserHome/UserHome";
 
 export class landing extends Component {
 
@@ -22,9 +22,6 @@ export class landing extends Component {
     // }
     return (
       <div>
-        <h1>
-          <Link to="/">SK9</Link>{" "}
-        </h1>
         <section>
           <header>
             <h3>Success starts with a solid relationship</h3>

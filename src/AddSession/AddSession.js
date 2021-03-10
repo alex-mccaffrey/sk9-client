@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { fakeSessions } from "../FolderSessions/fakeSessions";
+//import { Link } from "react-router-dom";
+//import { fakeSessions } from "../FolderSessions/fakeSessions";
 import { fakeFolders } from "../App/fakeFolders";
 import ApiContext from "../ApiContext";
 
@@ -33,11 +33,8 @@ export class AddSession extends Component {
   render() {
     return (
       <div>
-        <h1>
-          <Link to="/user/:id">SK9</Link>{" "}
-        </h1>
         <header>
-          <h1>Add a Session</h1>
+          <h2>Add a Session</h2>
         </header>
         <form id="new-session">
           <section className="form-section overview-section">

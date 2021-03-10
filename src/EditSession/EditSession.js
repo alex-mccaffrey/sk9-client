@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { fakeFolders } from '../App/fakeFolders'
 
 export class EditSession extends Component {
+
+  handleCancel = () => {
+    this.props.history.push('/user/:userId')
+  }
+
   render() {
     return (
       <div>
-        <h1>
-          <Link to="/user/:id">SK9</Link>{" "}
-        </h1>
         <header>
-          <h1>Edit your session</h1>
+          <h2>Edit your Session</h2>
         </header>
         <form id="new-session">
           <section className="form-section overview-section">
@@ -21,11 +24,25 @@ export class EditSession extends Component {
               required
             />
           </section>
+
           <section className="form-section overview-section">
-            <label htmlFor="session-summary">Session summary</label>
-            <textarea name="session-summary" rows="15" required></textarea>
+            <label htmlFor="session-folder">Session Folder</label>
+            <select name="session-folder" id="session-folder">
+              {fakeFolders.map((folder) => {
+                return (
+                  <option key={folder.id} value={folder.id} name="folder-id">
+                    {folder.title}
+                  </option>
+                );
+              })}
+            </select>
           </section>
-          <section className="search-time-container form-section">
+
+          <section className="form-section overview-section">
+            <label htmlFor="session-content">Session content</label>
+            <textarea name="session-content" rows="15" required></textarea>
+          </section>
+          {/* <section className="search-time-container form-section">
             <label htmlFor="distance-searched">Search Distance (miles)</label>
             <input
               type="number"
@@ -33,7 +50,7 @@ export class EditSession extends Component {
               id="distance-searched"
               placeholder="1"
             />
-          </section>
+          </section> */}
 
           <section className="form-section session-type-section">
             <h2>Select session type</h2>
@@ -43,7 +60,6 @@ export class EditSession extends Component {
               id="session-type-runaway"
               value="0"
               className="session-type-radio"
-              checked
             />
             <label htmlFor="session-type-runaway">
               <span>Runaway</span>
@@ -83,7 +99,7 @@ export class EditSession extends Component {
             </label>
           </section>
 
-          <section className="form-section">
+          {/* <section className="form-section">
             <label className="dream-date-label" htmlFor="date-month">
               Date of Session
             </label>
@@ -116,10 +132,16 @@ export class EditSession extends Component {
               max="2017"
               required=""
             />
-          </section>
+          </section> */}
+
           <section className="button-section">
             <button type="submit">Submit</button>
-            <button type="reset">Reset</button>
+            <button
+            className="Session__add"
+            type="button"
+            onClick={() => this.handleCancel()}
+          > Cancel
+          </button>
           </section>
         </form>
       </div>
@@ -127,4 +149,4 @@ export class EditSession extends Component {
   }
 }
 
-export default EditSession;
+export default withRouter(EditSession);

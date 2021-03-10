@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 //import config from "../config";
 import "./App.css";
 import ApiContext from "../ApiContext";
@@ -20,7 +20,7 @@ class App extends Component {
   state = {
     sessions: [],
     folders: [],
-    loggedIn: false,
+    loggedIn: true,
   };
 
   // handleAddFolder(folder) {
@@ -56,6 +56,13 @@ class App extends Component {
   };
 
   renderMainRoutes() {
+    if (this.state.loggedIn === false) {
+      return (
+        ["/", "/landing"].map((path) => (
+          <Route exact key={path} path={path} component={Landing} />
+        ))
+      )
+    }
     return (
       <>
       {["/", "/landing"].map((path) => (
@@ -89,6 +96,9 @@ class App extends Component {
             <MainNav />
           </nav>
           <header className="App_header">
+            <h1>
+            <Link to="/landing">SK9</Link>{" "}
+            </h1>
             <h2>Search and Rescue K9 Training Journal</h2>
           </header>
           <main className="App_main">{this.renderMainRoutes()}</main>

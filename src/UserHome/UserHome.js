@@ -7,16 +7,17 @@ export class UserHome extends Component {
   render() {
     return (
       <main role="main">
-        <h1>
-          <Link to="/user/:id">SK9</Link>{" "}
-        </h1>
         <header role="banner">
-          <h1>Check out your Folders</h1>
+          <h2>Check out your Folders</h2>
         </header>
         {fakeFolders.map((folder) => {
           return (
             <li key={folder.id}>
-              <Link to={`/folder/${folder.id}`}>{folder.title}</Link>
+              <Link to={{
+                pathname: `/folder/${folder.id}`, 
+                query:{title: `${folder.title}`}
+              }}>{folder.title}</Link>
+              {/* <Link to={`/folder/${folder.id}`}>{folder.title}</Link> */}
             </li>
           );
         })}

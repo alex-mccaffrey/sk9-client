@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 //import { format } from 'date-fns'
 //import EditSession from '../EditSession/EditSession'
@@ -9,6 +9,10 @@ class SessionDetail extends Component {
 
 handleAddClick = () => {
   this.props.history.push('/add-session')
+}
+
+handleEditClick = () => {
+  this.props.history.push('/edit-session')
 }
 
 
@@ -22,13 +26,6 @@ handleAddClick = () => {
     if (specificSessionArray.length > 0) {
       return (
         <main role="main">
-          <h1>
-            <Link to="/user/:id">SK9</Link>{" "}
-          </h1>
-          {console.log(
-            "this is the specific session in the render:",
-            specificSessionArray[0]
-          )}
           <h2 className="Session__title">Title: {specificSession.title}</h2>
           <p>{specificSession.details}</p>
           <p>Drill Type: {specificSession.drill_type}</p>
@@ -47,12 +44,11 @@ handleAddClick = () => {
           <button
             className="Session__edit"
             type="button"
-            onClick={() => console.log("session edit clicked")}
+            onClick={() => this.handleEditClick()}
           >
             Edit
           </button>
           <button
-            path="/add-session"
             className="Session__add"
             type="button"
             onClick={() => this.handleAddClick()}

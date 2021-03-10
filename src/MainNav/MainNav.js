@@ -10,32 +10,20 @@ export class MainNav extends Component {
     if (this.context.loggedIn) {
       return (
         <>
-          <Link to="/user/:userId">Home</Link>
-          <Link to="/add-session">Add a Session</Link>
-          <Link to="/add-folder">Add a Folder</Link>
+          <Link className='text-link' to="/user/:userId">Home</Link>
+          <Link className='text-link' to="/add-session">Add a Session</Link>
+          <Link className='text-link' to="/add-folder">Add a Folder</Link>
         </>
       );
     }
   }
 
   render() {
-    // const isLoggedIn = true;
-    // const loggedInNavBar = (
-    //   <>
-    //     <Link to="/user/:userId">Home</Link>
-    //     <Link to="/add-session">Add a Session</Link>
-    //     <Link to="/add-folder">Add a Folder</Link>
-    //   </>
-    // );
 
     return (
       <div className="main-nav-links">
-        <Link to="/">Welcome</Link>
+        <Link className='text-link' to="/">Welcome</Link>
         {this.renderLoggedInLinks()}
-        {/* {isLoggedIn && <Link to="/user/:userId">Home</Link>}
-        <Link to="/add-session">Add a Session</Link>
-        <Link to="/add-folder">Add a Folder</Link> */}
-        {/* {isLoggedIn && loggedInNavBar} */}
       </div>
     );
   }
