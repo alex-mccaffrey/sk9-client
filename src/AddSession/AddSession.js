@@ -28,21 +28,8 @@ export class AddSession extends Component {
           modified: new Date(),
           //drill_type: e.target["session-type"].value,
     }
+  }
 
-    fetch(`${fakeSessions}`, {
-      // .then(res => {
-      //   if (!res.ok)
-      //     return res.json().then(e => Promise.reject(e))
-      //   return res.json()
-      // })
-    })
-      .then(newSession => {
-        fakeSessions.push(newSession)
-      })
-      .catch(error => {
-        console.error({ error })
-      })
-    }
   render() {
     return (
       <div>
@@ -171,7 +158,7 @@ export class AddSession extends Component {
               required=""
             />
           </section> */}
-          
+
           <section className="button-section">
             <button type="submit">Submit</button>
             <button type="reset">Reset</button>

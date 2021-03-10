@@ -13,13 +13,14 @@ export class FolderSessions extends Component {
         <ul>
           {fakeSessions.map((session) => (
             <li key={session.id}>
-                
-              <Link
+              <Link to={`/session/${session.id}`}>{session.title}</Link>
+
+              {/* <Link
                 to={`/session/${session.id}`}
                 render={(rprops) => <SessionDetail {...rprops} />}
               >
                 {session.title}
-              </Link>
+              </Link> */}
             </li>
           ))}
         </ul>

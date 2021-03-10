@@ -1,16 +1,24 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 //import { format } from 'date-fns'
 //import EditSession from '../EditSession/EditSession'
 import { fakeSessions } from "../FolderSessions/fakeSessions";
 
 class SessionDetail extends Component {
+
+handleAddClick = () => {
+  this.props.history.push('/add-session')
+}
+
+
   render() {
     const id = this.props.match.params.sessionId;
     const specificSessionArray = fakeSessions.filter(
       (session) => session.id === parseInt(id)
     );
-    // const specificSession = specificSessionArray.length > 0 ? specificSessionArray[0] : {}
+    const specificSession = specificSessionArray.length > 0 ? specificSessionArray[0] : {}
+
     if (specificSessionArray.length > 0) {
       return (
         <main role="main">
@@ -21,12 +29,12 @@ class SessionDetail extends Component {
             "this is the specific session in the render:",
             specificSessionArray[0]
           )}
-          <h2 className="Session__title">Title: {specificSessionArray[0].title}</h2>
-          <p>{specificSessionArray[0].details}</p>
-          <p>Drill Type: {specificSessionArray[0].drill_type}</p>
+          <h2 className="Session__title">Title: {specificSession.title}</h2>
+          <p>{specificSession.details}</p>
+          <p>Drill Type: {specificSession.drill_type}</p>
           <div className="Session__dates">
             <div className="Session__dates-modified">
-              Modified <span className="Date">{specificSessionArray[0].modified}</span>
+              Modified <span className="Date">{specificSession.modified}</span>
             </div>
           </div>
           <button
@@ -47,7 +55,7 @@ class SessionDetail extends Component {
             path="/add-session"
             className="Session__add"
             type="button"
-            onClick={() => console.log("session add clicked")}
+            onClick={() => this.handleAddClick()}
           >
             Add Session
           </button>
@@ -62,4 +70,4 @@ class SessionDetail extends Component {
   }
 }
 
-export default SessionDetail;
+export default withRouter(SessionDetail);
