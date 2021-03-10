@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
-//import config from "../config";
+import config from "../config";
 import "./App.css";
 import ApiContext from "../ApiContext";
 import AddFolder from "../AddFolder/AddFolder";
@@ -11,6 +11,7 @@ import Landing from "../Landing/Landing";
 import SessionDetail from "../SessionDetail/SessionDetail";
 import EditSession from "../EditSession/EditSession";
 import FolderSessions from "../FolderSessions/FolderSessions";
+import { fakeFolders } from "./fakeFolders";
 
 class App extends Component {
   // constructor(props) {
@@ -23,11 +24,38 @@ class App extends Component {
     loggedIn: true,
   };
 
-  // handleAddFolder(folder) {
-  //   this.setState({
-  //     folders: [...this.state.folders, folder],
-  //   });
-  // }
+  componentDidMount() {
+    Promise.all(
+      fetch(`${config.API_ENDPOINT}/folders`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+          //'Authorization': `Bearer ${config.API_KEY}`
+        }
+      })
+    )
+      .then((foldersRes) => {
+        if (!foldersRes.ok)
+          return foldersRes.json().then((e) => Promise.reject(e));
+
+        return Promise.all(foldersRes.json());
+      })
+      .then((folders) => {
+        this.setState(folders);
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  }
+
+
+
+
+  handleAddFolder(folder) {
+    this.setState({
+      folders: [...this.state.folders, folder],
+    });
+  }
 
   handleAddSession(session) {
     this.setState({
@@ -35,19 +63,19 @@ class App extends Component {
     });
   }
 
-  // handleDeleteSession(sessionId) {
-  //   this.setState({
-  //     sessions: this.state.sessions.filter(
-  //       (session) => session.id !== sessionId
-  //     ),
-  //   });
-  // }
+  handleDeleteSession(sessionId) {
+    this.setState({
+      sessions: this.state.sessions.filter(
+        (session) => session.id !== sessionId
+      ),
+    });
+  }
 
-  // handleDeleteFolder(folderId) {
-  //   this.setState({
-  //     folders: this.state.folders.filter((folder) => folder.id !== folderId),
-  //   });
-  // }
+  handleDeleteFolder(folderId) {
+    this.setState({
+      folders: this.state.folders.filter((folder) => folder.id !== folderId),
+    });
+  }
 
   handleLogin = () => {
     this.setState({
@@ -84,10 +112,11 @@ class App extends Component {
       folders: this.state.folders,
       login: this.handleLogin,
       loggedIn: this.state.loggedIn,
-      // addFolder: this.handleAddFolder,
+      addFolder: this.handleAddFolder,
       addSession: this.handleAddSession,
-      //   deleteSession: this.handleDeleteSession,
-      //   deleteFolder: this.handleDeleteFolder,
+      deleteSession: this.handleDeleteSession,
+      deleteFolder: this.handleDeleteFolder,
+      //editSession: this.handleEditSession
     };
     return (
       <ApiContext.Provider value={value}>
