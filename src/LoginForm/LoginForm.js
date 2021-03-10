@@ -1,39 +1,45 @@
-import React, { Component } from 'react'
-import ApiContext from '../ApiContext'
+import React, { Component } from "react";
+import { withRouter } from 'react-router-dom';
+import ApiContext from "../ApiContext";
+import UserHome from '../UserHome/UserHome';
 
 export class LoginForm extends Component {
-  
+
+
   static contextType = ApiContext;
 
+  handleLogin = (e) => {
+    e.preventDefault();
+    this.context.login()
+    this.props.history.push('/user/:userId');
+  };
 
-  handleLogin = e => {
-    e.preventDefault()
-    this.context.loggedIn=true
-    console.log("login button clicked")
-    console.log(this.context.loggedIn)``
-  }
-
-    render() {
-      
-        return (
-            <div>
-                <section>
-        <header><h3>Sign In</h3>
-        </header>
-        <form className='login-form'>
-          <p>Demo Account: <br />Username: Alex <br /> Password: Demo
-          </p>
+  render() {
+    return (
+      <div>
+        <section>
+          <header>
+            <h3>Sign In</h3>
+          </header>
+          <form className="login-form">
+            <p>
+              Demo Account: <br />
+              <b>Username: Alex</b><br /> Password: Demo
+            </p>
             <div>
               <label htmlFor="username">Username</label>
-              <input type="text" name='username' id='username' /> 
+              <input type="text" name="username" id="username" />
             </div>
             <div>
               <label htmlFor="password">Password</label>
-              <input type="password" name='password' id='password' />
+              <input type="password" name="password" id="password" />
             </div>
-            <button type='submit' value='true' onClick={this.handleLogin}>Sign In</button>
-        </form>
-        {/* <form className='login-form'>
+            <button type="submit" value="true" onClick={this.handleLogin}>
+              Sign In
+            </button>
+          </form>
+          {this.context.loggedIn ? <UserHome /> : null}
+          {/* <form className='login-form'>
             <div>
               <label htmlFor="username">Email</label>
               <input type="text" name='username' id='username' />
@@ -67,10 +73,10 @@ export class LoginForm extends Component {
             </div>
             <button type='submit'>Sign Up</button>
         </form> */}
-      </section>
-            </div>
-        )
-    }
+        </section>
+      </div>
+    );
+  }
 }
 
-export default LoginForm
+export default withRouter(LoginForm);

@@ -1,10 +1,30 @@
 import React, { Component } from "react";
-import LoginForm from "../LoginForm/LoginForm"
+import { Link } from "react-router-dom";
+import LoginForm from "../LoginForm/LoginForm";
+import ApiContext from "../ApiContext"
+import UserHome from "../UserHome/UserHome";
 
 export class landing extends Component {
+
+
+  static contextType = ApiContext;
+
+  loginForm() {
+    if (this.context.loggedIn === false) {
+      return <LoginForm />
+  }
+  return null
+}
+
   render() {
+    // if (this.context.loggedIn === true) {
+    //   return <UserHome />
+    // }
     return (
       <div>
+        <h1>
+          <Link to="/">SK9</Link>{" "}
+        </h1>
         <section>
           <header>
             <h3>Success starts with a solid relationship</h3>
@@ -23,12 +43,19 @@ export class landing extends Component {
           </p>
         </section>
         <section>
-        <header>
+          <header>
             <h3>Record your sessions</h3>
-        </header>
-        <p>The key to SAR dog training is to consistently document your progress and pitfalls so that you can recognize patterns. SK9 provides a simple interface to track training sessions to recognize those patterns.</p>
-      </section>
-      <section><LoginForm/></section>
+          </header>
+          <p>
+            The key to SAR dog training is to consistently document your
+            progress and pitfalls so that you can recognize patterns. SK9
+            provides a simple interface to track training sessions to recognize
+            those patterns.
+          </p>
+        </section>
+        <section>
+          {this.loginForm()}
+        </section>
       </div>
     );
   }

@@ -1,31 +1,31 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import SessionDetail from '../SessionDetail/SessionDetail'
-import { fakeSessions } from './fakeSessions'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import SessionDetail from "../SessionDetail/SessionDetail";
+import { fakeSessions } from "./fakeSessions";
 
 export class FolderSessions extends Component {
-    render() {
-        return (
-            <div>
-                <ul>
-          {fakeSessions.map(session =>
+  render() {
+    return (
+      <div>
+        <h1>
+          <Link to="/user/:id">SK9</Link>{" "}
+        </h1>
+        <ul>
+          {fakeSessions.map((session) => (
             <li key={session.id}>
-                <Link to={`/session/${session.id}`} render={(rprops) => <SessionDetail {...rprops}/>}>
-            {session.title}
-          </Link>
-              {/* <SessionDetail
-                id={session.id}
-                title={session.title}
-                details={session.details}
-                modified={session.modified}
-                drill_type={session.drill_type}
-              /> */}
+                
+              <Link
+                to={`/session/${session.id}`}
+                render={(rprops) => <SessionDetail {...rprops} />}
+              >
+                {session.title}
+              </Link>
             </li>
-          )}
+          ))}
         </ul>
-            </div>
-        )
-    }
+      </div>
+    );
+  }
 }
 
-export default FolderSessions
+export default FolderSessions;
