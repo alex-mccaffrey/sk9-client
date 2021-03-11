@@ -3,6 +3,7 @@ import React, { Component } from "react";
 //import { fakeSessions } from "../FolderSessions/fakeSessions";
 import { fakeFolders } from "../App/fakeFolders";
 import ApiContext from "../ApiContext";
+//import "./AddSession.css"
 
 export class AddSession extends Component {
   static contextType = ApiContext;
@@ -19,16 +20,16 @@ export class AddSession extends Component {
   //   return fakeSessions.push(newSession), console.log(fakeSessions);
   // };
 
-  handleSubmit = e => {
-    e.preventDefault()
+  handleSubmit = (e) => {
+    e.preventDefault();
     const newSession = {
-          title: e.target["session-title"].value,
-          details: e.target["session-content"].value,
-          folder_id: e.target["folder-id"].value,
-          modified: new Date(),
-          //drill_type: e.target["session-type"].value,
-    }
-  }
+      title: e.target["session-title"].value,
+      details: e.target["session-content"].value,
+      folder_id: e.target["folder-id"].value,
+      modified: new Date(),
+      //drill_type: e.target["session-type"].value,
+    };
+  };
 
   render() {
     return (
@@ -38,7 +39,7 @@ export class AddSession extends Component {
         </header>
         <form id="new-session">
           <section className="form-section overview-section">
-            <label htmlFor="session-title">Session Title</label>
+            <label htmlFor="session-title">Session Title</label><br/>
             <input
               type="text"
               name="session-title"
@@ -48,7 +49,7 @@ export class AddSession extends Component {
           </section>
 
           <section className="form-section overview-section">
-            <label htmlFor="session-folder">Session Folder</label>
+            <label htmlFor="session-folder">Session Folder</label><br/>
             <select name="session-folder" id="session-folder">
               {fakeFolders.map((folder) => {
                 return (
@@ -61,8 +62,8 @@ export class AddSession extends Component {
           </section>
 
           <section className="form-section overview-section">
-            <label htmlFor="session-content">Session content</label>
-            <textarea name="session-content" rows="15" required></textarea>
+            <label htmlFor="session-content">Session content</label><br/>
+            <textarea name="session-content" id="session-details-box" rows="5" required></textarea>
           </section>
           {/* <section className="search-time-container form-section">
             <label htmlFor="distance-searched">Search Distance (miles)</label>

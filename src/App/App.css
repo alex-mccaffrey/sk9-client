@@ -30,7 +30,7 @@
   }
   
   section {
-    min-height: 200px;
+    min-height: 100px;
     padding: 30px 15px;
     background-color: #bbb;
   }
@@ -57,3 +57,5 @@
     left: 0;
     content: "here"
   }
+
+ 

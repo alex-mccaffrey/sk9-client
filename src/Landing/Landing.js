@@ -23,9 +23,7 @@ export class landing extends Component {
     return (
       <div>
         <section>
-          <header>
             <h3>Success starts with a solid relationship</h3>
-          </header>
           <p>
             A well trained dog is one that that respects their human. A well
             trained human is one that respects their dog. The foundation for
@@ -40,9 +38,9 @@ export class landing extends Component {
           </p>
         </section>
         <section>
-          <header>
+
             <h3>Record your sessions</h3>
-          </header>
+         
           <p>
             The key to SAR dog training is to consistently document your
             progress and pitfalls so that you can recognize patterns. SK9

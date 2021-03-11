@@ -8,7 +8,7 @@ export class UserHome extends Component {
   static contextType = ApiContext;
 
   render() {
-    console.log(this.context.folders)
+    console.log("this is context folders in userhome:", this.context.folders)
     return (
       <main role="main">
         <header role="banner">

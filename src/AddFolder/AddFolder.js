@@ -8,7 +8,7 @@ export class AddFolder extends Component {
           <h2>Add a Folder</h2>
         <form id="new-folder">
           <section className="form-folder overview-section">
-            <label htmlFor="folder-title">Folder Title</label>
+            <label htmlFor="folder-title">Folder Title</label><br/>
             <input
               type="text"
               name="folder-title"

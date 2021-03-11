@@ -24,28 +24,33 @@ class App extends Component {
     loggedIn: true,
   };
 
-  componentDidMount() {
-    Promise.all(
-      fetch(`${config.API_ENDPOINT}/folders`, {
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json',
-          //'Authorization': `Bearer ${config.API_KEY}`
-        }
-      })
-    )
-      .then((foldersRes) => {
-        if (!foldersRes.ok)
-          return foldersRes.json().then((e) => Promise.reject(e));
+  setFolders = folders => {
+    console.log("folders in setFolders:", folders)
+    this.setState(folders)
+  }
 
-        return Promise.all(foldersRes.json());
+  componentDidMount() {
+    fetch(`${config.API_ENDPOINT}/folders`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        //'Authorization': `Bearer ${config.API_KEY}`
+      }
+    })
+      .then(res => {
+        console.log("this is the res in first promise:", res)
+        if (!res.ok) {
+          console.log("this is the res is not ok:", res.ok)
+          throw new Error(res.status)
+        }
+        return (
+          Promise.all(res.json())
+        )
       })
       .then((folders) => {
-        this.setState(folders);
+        this.setState({ folders })
       })
-      .catch((error) => {
-        console.error({ error });
-      });
+      .catch(error => this.setState({ error }))
   }
 
 
@@ -131,7 +136,7 @@ class App extends Component {
             <h2>Search and Rescue K9 Training Journal</h2>
           </header>
           <main className="App_main">{this.renderMainRoutes()}</main>
-          <footer className="content-info">Footer</footer>
+          <footer className="content-info">Built by Alex McCaffrey</footer>
         </div>
       </ApiContext.Provider>
     );
