@@ -4,28 +4,55 @@ import React, { Component } from "react";
 import { fakeFolders } from "../App/fakeFolders";
 import ApiContext from "../ApiContext";
 //import "./AddSession.css"
+import config from "../config";
 
 export class AddSession extends Component {
   static contextType = ApiContext;
 
-  state = { 
+  state = {
     title: "",
     details: "",
-    folder_id: -1,
-    drill_type: 1,
-  }
- 
+    folderId: 1,
+    drillType: 1,
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state)
-    const { title, details, folder_id, drill_type } = this.state
+    console.log(this.state);
+    console.log(this.context);
+    const { title, details, folderId, drillType } = this.state;
     //const timeNow = new Date()
-    const newSession = { title, details, folder_id, drill_type, modified: new Date()}
+    const newSession = {
+      title,
+      details,
+      folder_id: folderId,
+      drill_type: drillType,
+      modified: new Date(),
     };
+    fetch(`${config.API_ENDPOINT}/sessions`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        //'Authorization': `Bearer ${config.API_KEY}`
+      },
+      body: JSON.stringify(newSession),
+    })
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then((newSession) => {
+        this.context.addSession(newSession);
+        this.props.history.push(`/folder/${newSession.folderId}`);
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  };
 
-    handleRadioButton = (drill_type) => {
-      this.setState({ drill_type })
-    }
+  handleRadioButton = (drillType) => {
+    this.setState({ drillType });
+  };
 
   render() {
     return (
@@ -35,7 +62,8 @@ export class AddSession extends Component {
         </header>
         <form id="new-session" onSubmit={this.handleSubmit}>
           <section className="form-section overview-section">
-            <label htmlFor="session-title">Session Title</label><br/>
+            <label htmlFor="session-title">Session Title</label>
+            <br />
             <input
               type="text"
               name="session-title"
@@ -47,8 +75,13 @@ export class AddSession extends Component {
           </section>
 
           <section className="form-section overview-section">
-            <label htmlFor="session-folder">Session Folder</label><br/>
-            <select name="session-folder" id="session-folder" onChange={(e) => this.setState({ folder_id: e.target.value })}>
+            <label htmlFor="session-folder">Session Folder</label>
+            <br />
+            <select
+              name="session-folder"
+              id="session-folder"
+              onChange={(e) => this.setState({ folder_id: e.target.value })}
+            >
               {fakeFolders.map((folder) => {
                 return (
                   <option key={folder.id} value={folder.id} name="folder-id">
@@ -60,8 +93,16 @@ export class AddSession extends Component {
           </section>
 
           <section className="form-section overview-section">
-            <label htmlFor="session-content">Session content</label><br/>
-            <textarea value={this.state.details} name="session-content" id="session-details-box" rows="5" onChange={(e) => this.setState({ details: e.target.value })} required></textarea>
+            <label htmlFor="session-content">Session content</label>
+            <br />
+            <textarea
+              value={this.state.details}
+              name="session-content"
+              id="session-details-box"
+              rows="5"
+              onChange={(e) => this.setState({ details: e.target.value })}
+              required
+            ></textarea>
           </section>
           {/* <section className="search-time-container form-section">
             <label htmlFor="distance-searched">Search Distance (miles)</label>
@@ -81,7 +122,7 @@ export class AddSession extends Component {
               id="session-type-runaway"
               value="0"
               className="session-type-radio"
-              checked={this.state.drill_type === 0 }
+              checked={this.state.drillType === 0}
               onChange={() => this.handleRadioButton(0)}
             />
             <label htmlFor="session-type-runaway">
@@ -98,7 +139,7 @@ export class AddSession extends Component {
               id="session-type-blind"
               value="1"
               className="session-type-radio"
-              checked={this.state.drill_type === 1 }
+              checked={this.state.drillType === 1}
               onChange={() => this.handleRadioButton(1)}
             />
             <label htmlFor="session-type-blind">
@@ -115,7 +156,7 @@ export class AddSession extends Component {
               id="session-type-multiple"
               value="2"
               className="session-type-radio"
-              checked={this.state.drill_type === 2 }
+              checked={this.state.drillType === 2}
               onChange={() => this.handleRadioButton(2)}
             />
             <label htmlFor="session-type-multiple">

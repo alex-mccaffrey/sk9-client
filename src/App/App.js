@@ -14,39 +14,51 @@ import FolderSessions from "../FolderSessions/FolderSessions";
 import { fakeFolders } from "./fakeFolders";
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   };
+
 
   state = {
-    //sessions: [],
+    sessions: [],
     folders: [],
+    selectedFolder: "",
     loggedIn: true,
   };
 
-  
-
-  componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/folders`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        //'Authorization': `Bearer ${config.API_KEY}`
-      }
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(res.status)
-        }
-        return (res.json())
-      })
-      .then((folders) => {
-        this.setState({ folders })
-      })
-      .catch(error => this.setState({ error }))
+  setFolder = (selectedFolder) => {
+    this.setState({ selectedFolder })
   }
 
+  
+  componentDidMount() {
+    Promise.all([
+      fetch(`${config.API_ENDPOINT}/sessions`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+          //'Authorization': `Bearer ${config.API_KEY}`
+        }
+      }),
+      fetch(`${config.API_ENDPOINT}/folders`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+          //'Authorization': `Bearer ${config.API_KEY}`
+        }
+      })
+    ])
+      .then(([sessionsRes, foldersRes]) => {
+        if (!sessionsRes.ok) return sessionsRes.json().then((e) => Promise.reject(e));
+        if (!foldersRes.ok)
+          return foldersRes.json().then((e) => Promise.reject(e));
 
+        return Promise.all([sessionsRes.json(), foldersRes.json()]);
+      })
+      .then(([sessions, folders]) => {
+        this.setState({ sessions, folders });
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  }
 
 
   handleAddFolder(folder) {
@@ -55,11 +67,18 @@ class App extends Component {
     });
   }
 
+  // handleEditSession(sessionId) {
+  //   this.setState({
+
+  //   })
+  // }
+
   handleAddSession(session) {
     this.setState({
       sessions: [...this.state.sessions, session],
     });
   }
+
 
   handleDeleteSession(sessionId) {
     this.setState({
@@ -108,6 +127,8 @@ class App extends Component {
     const value = {
       sessions: this.state.sessions,
       folders: this.state.folders,
+      selectedFolder: this.state.selectedFolder,
+      setFolder: this.setFolder,
       login: this.handleLogin,
       loggedIn: this.state.loggedIn,
       addFolder: this.handleAddFolder,
