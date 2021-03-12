@@ -8,28 +8,24 @@ import ApiContext from "../ApiContext";
 export class AddSession extends Component {
   static contextType = ApiContext;
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const newSession = {
-  //     title: e.target["session-title"],
-  //     details: e.target["session-content"],
-  //     //folder_id: e.target["session-folder-id"].value,
-  //     modified: new Date(),
-  //     //drill_type: e.target["session-type"].value,
-  //   };
-  //   return fakeSessions.push(newSession), console.log(fakeSessions);
-  // };
-
+  state = { 
+    title: "",
+    details: "",
+    folder_id: -1,
+    drill_type: 1,
+  }
+ 
   handleSubmit = (e) => {
     e.preventDefault();
-    const newSession = {
-      title: e.target["session-title"].value,
-      details: e.target["session-content"].value,
-      folder_id: e.target["folder-id"].value,
-      modified: new Date(),
-      //drill_type: e.target["session-type"].value,
+    console.log(this.state)
+    const { title, details, folder_id, drill_type } = this.state
+    //const timeNow = new Date()
+    const newSession = { title, details, folder_id, drill_type, modified: new Date()}
     };
-  };
+
+    handleRadioButton = (drill_type) => {
+      this.setState({ drill_type })
+    }
 
   render() {
     return (
@@ -37,7 +33,7 @@ export class AddSession extends Component {
         <header>
           <h2>Add a Session</h2>
         </header>
-        <form id="new-session">
+        <form id="new-session" onSubmit={this.handleSubmit}>
           <section className="form-section overview-section">
             <label htmlFor="session-title">Session Title</label><br/>
             <input
@@ -45,12 +41,14 @@ export class AddSession extends Component {
               name="session-title"
               placeholder="Session Title"
               required
+              value={this.state.title}
+              onChange={(e) => this.setState({ title: e.target.value })}
             />
           </section>
 
           <section className="form-section overview-section">
             <label htmlFor="session-folder">Session Folder</label><br/>
-            <select name="session-folder" id="session-folder">
+            <select name="session-folder" id="session-folder" onChange={(e) => this.setState({ folder_id: e.target.value })}>
               {fakeFolders.map((folder) => {
                 return (
                   <option key={folder.id} value={folder.id} name="folder-id">
@@ -63,7 +61,7 @@ export class AddSession extends Component {
 
           <section className="form-section overview-section">
             <label htmlFor="session-content">Session content</label><br/>
-            <textarea name="session-content" id="session-details-box" rows="5" required></textarea>
+            <textarea value={this.state.details} name="session-content" id="session-details-box" rows="5" onChange={(e) => this.setState({ details: e.target.value })} required></textarea>
           </section>
           {/* <section className="search-time-container form-section">
             <label htmlFor="distance-searched">Search Distance (miles)</label>
@@ -83,6 +81,8 @@ export class AddSession extends Component {
               id="session-type-runaway"
               value="0"
               className="session-type-radio"
+              checked={this.state.drill_type === 0 }
+              onChange={() => this.handleRadioButton(0)}
             />
             <label htmlFor="session-type-runaway">
               <span>Runaway</span>
@@ -98,6 +98,8 @@ export class AddSession extends Component {
               id="session-type-blind"
               value="1"
               className="session-type-radio"
+              checked={this.state.drill_type === 1 }
+              onChange={() => this.handleRadioButton(1)}
             />
             <label htmlFor="session-type-blind">
               <span>Blind</span>
@@ -113,6 +115,8 @@ export class AddSession extends Component {
               id="session-type-multiple"
               value="2"
               className="session-type-radio"
+              checked={this.state.drill_type === 2 }
+              onChange={() => this.handleRadioButton(2)}
             />
             <label htmlFor="session-type-multiple">
               <span>Multiple</span>

@@ -19,15 +19,12 @@ class App extends Component {
   //   };
 
   state = {
-    sessions: [],
+    //sessions: [],
     folders: [],
     loggedIn: true,
   };
 
-  setFolders = folders => {
-    console.log("folders in setFolders:", folders)
-    this.setState(folders)
-  }
+  
 
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}/folders`, {
@@ -38,14 +35,10 @@ class App extends Component {
       }
     })
       .then(res => {
-        console.log("this is the res in first promise:", res)
         if (!res.ok) {
-          console.log("this is the res is not ok:", res.ok)
           throw new Error(res.status)
         }
-        return (
-          Promise.all(res.json())
-        )
+        return (res.json())
       })
       .then((folders) => {
         this.setState({ folders })
