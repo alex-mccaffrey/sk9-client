@@ -14,39 +14,40 @@ import FolderSessions from "../FolderSessions/FolderSessions";
 import { fakeFolders } from "./fakeFolders";
 
 class App extends Component {
-
-
   state = {
     sessions: [],
     folders: [],
-    selectedFolder: "",
-    loggedIn: true,
+    selectedFolder: {
+      id: null,
+      title: "",
+    },
+    loggedIn: false,
   };
 
   setFolder = (selectedFolder) => {
-    this.setState({ selectedFolder })
-  }
+    this.setState({ selectedFolder });
+  };
 
-  
   componentDidMount() {
     Promise.all([
       fetch(`${config.API_ENDPOINT}/sessions`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'content-type': 'application/json',
+          "content-type": "application/json",
           //'Authorization': `Bearer ${config.API_KEY}`
-        }
+        },
       }),
       fetch(`${config.API_ENDPOINT}/folders`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'content-type': 'application/json',
+          "content-type": "application/json",
           //'Authorization': `Bearer ${config.API_KEY}`
-        }
-      })
+        },
+      }),
     ])
       .then(([sessionsRes, foldersRes]) => {
-        if (!sessionsRes.ok) return sessionsRes.json().then((e) => Promise.reject(e));
+        if (!sessionsRes.ok)
+          return sessionsRes.json().then((e) => Promise.reject(e));
         if (!foldersRes.ok)
           return foldersRes.json().then((e) => Promise.reject(e));
 
@@ -60,27 +61,23 @@ class App extends Component {
       });
   }
 
-
-  handleAddFolder(folder) {
+  handleAddFolder = (folder) => {
     this.setState({
       folders: [...this.state.folders, folder],
     });
   }
 
-  // handleEditSession(sessionId) {
-  //   this.setState({
+  handleEditSession = (sessionId) => {
+    console.log(sessionId)
+  }
 
-  //   })
-  // }
-
-  handleAddSession(session) {
+  handleAddSession = (session) => {
     this.setState({
       sessions: [...this.state.sessions, session],
     });
   }
 
-
-  handleDeleteSession(sessionId) {
+  handleDeleteSession = (sessionId) => {
     this.setState({
       sessions: this.state.sessions.filter(
         (session) => session.id !== sessionId
@@ -88,7 +85,7 @@ class App extends Component {
     });
   }
 
-  handleDeleteFolder(folderId) {
+  handleDeleteFolder = (folderId) => {
     this.setState({
       folders: this.state.folders.filter((folder) => folder.id !== folderId),
     });
@@ -100,17 +97,21 @@ class App extends Component {
     });
   };
 
+  handleLogout = () => {
+    this.setState({
+      loggedIn: false
+    })
+  }
+
   renderMainRoutes() {
     if (this.state.loggedIn === false) {
-      return (
-        ["/", "/landing"].map((path) => (
-          <Route exact key={path} path={path} component={Landing} />
-        ))
-      )
+      return ["/", "/landing"].map((path) => (
+        <Route exact key={path} path={path} component={Landing} />
+      ));
     }
     return (
       <>
-      {["/", "/landing"].map((path) => (
+        {["/", "/landing"].map((path) => (
           <Route exact key={path} path={path} component={Landing} />
         ))}
         <Route path="/user/:userId" component={UserHome} />
@@ -128,14 +129,15 @@ class App extends Component {
       sessions: this.state.sessions,
       folders: this.state.folders,
       selectedFolder: this.state.selectedFolder,
+      loggedIn: this.state.loggedIn,
       setFolder: this.setFolder,
       login: this.handleLogin,
-      loggedIn: this.state.loggedIn,
+      logout: this.handleLogout,
       addFolder: this.handleAddFolder,
       addSession: this.handleAddSession,
       deleteSession: this.handleDeleteSession,
       deleteFolder: this.handleDeleteFolder,
-      //editSession: this.handleEditSession
+      editSession: this.handleEditSession
     };
     return (
       <ApiContext.Provider value={value}>
@@ -145,7 +147,7 @@ class App extends Component {
           </nav>
           <header className="App_header">
             <h1>
-            <Link to="/landing">SK9</Link>{" "}
+              <Link to="/landing">SK9</Link>{" "}
             </h1>
             <h2>Search and Rescue K9 Training Journal</h2>
           </header>

@@ -55,6 +55,7 @@ export class AddSession extends Component {
   };
 
   render() {
+    const getFolders = this.context.folders
     return (
       <div>
         <header>
@@ -80,14 +81,14 @@ export class AddSession extends Component {
             <select
               name="session-folder"
               id="session-folder"
-              onChange={(e) => this.setState({ folder_id: e.target.value })}
+              onChange={(e) => this.setState({ folderId: e.target.value })}
             >
-              {fakeFolders.map((folder) => {
+              {getFolders.map((folder) => {
                 return (
                   <option key={folder.id} value={folder.id} name="folder-id">
                     {folder.title}
                   </option>
-                );
+                )
               })}
             </select>
           </section>

@@ -17,9 +17,6 @@ export class landing extends Component {
 }
 
   render() {
-    // if (this.context.loggedIn === true) {
-    //   return <UserHome />
-    // }
     return (
       <div>
         <section>

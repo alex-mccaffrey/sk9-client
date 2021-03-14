@@ -7,8 +7,8 @@ import ApiContext from "../ApiContext";
 export class UserHome extends Component {
   static contextType = ApiContext;
 
-  updateSelectedFolder = (folderTitle) => {
-    this.context.setFolder(folderTitle)
+  updateSelectedFolder = (folder) => {
+    this.context.setFolder(folder)
   }
 
   render() {
@@ -24,7 +24,7 @@ export class UserHome extends Component {
                 pathname: `/folder/${folder.id}`,
                 query:{title: `${folder.title}`}
               }}
-              onClick={() => {this.updateSelectedFolder(folder.title)}}
+              onClick={() => {this.updateSelectedFolder(folder)}}
               >
                 {folder.title}</Link>
             </li>
