@@ -1,59 +1,56 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import ApiContext from "../ApiContext";
-//import { format } from 'date-fns'
-//import EditSession from '../EditSession/EditSession'
-import { fakeSessions } from "../FolderSessions/fakeSessions";
-import config from "../config"
+import config from "../config";
+import { format } from "date-fns";
 
 class SessionDetail extends Component {
+  static contextType = ApiContext;
 
-  static contextType = ApiContext
+  handleAddClick = () => {
+    this.props.history.push("/add-session");
+  };
 
+  // handleEditClick = (specificSession) => {
+  //   this.props.history.push({
+  //     pathname: "/edit-session",
+  //     state: { specificSession },
+  //   });
+  // };
 
-handleAddClick = () => {
-  this.props.history.push('/add-session')
-}
+  handleClickDelete = (e) => {
+    const sessionId = this.props.match.params.sessionId;
 
-
-handleEditClick = (specificSession) => {
-this.props.history.push({
-  pathname: '/edit-session',
-  state: { specificSession }
-})
-}
-
-handleClickDelete = e => {
-  const sessionId = this.props.match.params.sessionId
-
-  fetch(`${config.API_ENDPOINT}/sessions/${sessionId}`, {
-    method: 'DELETE',
-    headers: {
-        'content-type': 'application/json',
-        //'Authorization': `Bearer ${config.API_KEY}`
-    },
-  })
-  .then(res => {
-    if (!res.ok)
-      return res.json().then(e => Promise.reject(e))
-  })
-  .then(() => {
-    this.context.deleteSession(sessionId)
-    this.props.history.push('/user/:userId')
-  })
-  .catch(error => {
-    console.error({ error })
-  })
-}
+    fetch(`${config.API_ENDPOINT}/sessions/${sessionId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        //'Authorization': `Bearer ${API_KEY}`
+      },
+    })
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+      })
+      .then(() => {
+        this.context.deleteSession(sessionId);
+        this.props.history.push("/user/:userId");
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  };
 
   render() {
     const id = this.props.match.params.sessionId;
-    const specificSessionArray = this.context.sessions.filter((session) => session.id === parseInt(id));
-    const specificSession = specificSessionArray.length > 0 ? specificSessionArray[0] : {};
+    const specificSessionArray = this.context.sessions.filter(
+      (session) => session.id === parseInt(id)
+    );
+    const specificSession =
+      specificSessionArray.length > 0 ? specificSessionArray[0] : {};
+    const dateString = specificSession.modified.toString();
+    const modifiedDate = new Date(dateString);
 
     if (specificSessionArray.length > 0) {
-      console.log("this is the specific session:", specificSession)
       return (
         <main role="main">
           <h2 className="Session__title">Title: {specificSession.title}</h2>
@@ -61,7 +58,7 @@ handleClickDelete = e => {
           <p>Drill Type: {specificSession.drill_type}</p>
           <div className="Session__dates">
             <div className="Session__dates-modified">
-              Modified <span className="Date">{specificSession.modified}</span>
+              Modified: <span className="Date">{modifiedDate}</span>
             </div>
           </div>
           <button
@@ -71,13 +68,13 @@ handleClickDelete = e => {
           >
             Delete
           </button>
-          <button
+          {/* <button
             className="Session__edit"
             type="button"
             onClick={() => this.handleEditClick(specificSession)}
           >
             Edit
-          </button>
+          </button> */}
           <button
             className="Session__add"
             type="button"
@@ -92,7 +89,7 @@ handleClickDelete = e => {
       <div>
         <h1>Session not Found</h1>
       </div>
-    )
+    );
   }
 }
 

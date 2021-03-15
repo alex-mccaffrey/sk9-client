@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import ApiContext from "../ApiContext";
-//import FolderSessions from '../FolderSessions/FolderSessions'
+import "./UserHome.css"
 
 
 export class UserHome extends Component {

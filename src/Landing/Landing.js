@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
 import LoginForm from "../LoginForm/LoginForm";
 import ApiContext from "../ApiContext"
-//import UserHome from "../UserHome/UserHome";
 
 export class landing extends Component {
 

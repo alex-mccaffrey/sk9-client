@@ -1,15 +1,12 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
-import config from "../config"
-import ApiContext from "../ApiContext"
+import config from "../config";
+import ApiContext from "../ApiContext";
 export class AddFolder extends Component {
-
-    static contextType = ApiContext;
+  static contextType = ApiContext;
 
   state = {
     title: "",
   };
-
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +16,7 @@ export class AddFolder extends Component {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        //'Authorization': `Bearer ${config.API_KEY}`
+        //'Authorization': `Bearer ${API_KEY}`
       },
       body: JSON.stringify(newFolder),
     })
@@ -36,14 +33,14 @@ export class AddFolder extends Component {
       });
   };
 
-
   render() {
     return (
       <div>
-          <h2>Add a Folder</h2>
+        <h2>Add a Folder</h2>
         <form id="new-folder" onSubmit={this.handleSubmit}>
           <section className="form-folder overview-section">
-            <label htmlFor="folder-title">Folder Title</label><br/>
+            <label htmlFor="folder-title">Folder Title</label>
+            <br />
             <input
               type="text"
               name="folder-title"

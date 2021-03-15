@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
-//import { fakeSessions } from "../FolderSessions/fakeSessions";
-import { fakeFolders } from "../App/fakeFolders";
 import ApiContext from "../ApiContext";
-//import "./AddSession.css"
 import config from "../config";
 
 export class AddSession extends Component {
@@ -18,10 +14,7 @@ export class AddSession extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
-    console.log(this.context);
     const { title, details, folderId, drillType } = this.state;
-    //const timeNow = new Date()
     const newSession = {
       title,
       details,

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { fakeFolders } from '../App/fakeFolders'
-import ApiContext from '../ApiContext'
-import config from "../config"
-
+import ApiContext from "../ApiContext";
+import config from "../config";
 
 export class EditSession extends Component {
   static contextType = ApiContext;
@@ -16,20 +14,18 @@ export class EditSession extends Component {
   };
 
   componentDidMount() {
-    this.handleSetDrillType()
+    this.handleSetDrillType();
   }
 
   handleSetDrillType = () => {
     this.setState({
-      drillType: this.props.location.state.specificSession.drill_type
-    })
-  }
-
+      drillType: this.props.location.state.specificSession.drill_type,
+    });
+  };
 
   handleCancel = () => {
-    this.props.history.push('/user/:userId')
-  }
-
+    this.props.history.push("/user/:userId");
+  };
 
   handleRadioButton = (drillType) => {
     this.setState({ drillType });
@@ -37,8 +33,6 @@ export class EditSession extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
-    console.log(this.context);
     const { title, details, folderId, drillType } = this.state;
     //const timeNow = new Date()
     const updatedSession = {
@@ -48,14 +42,17 @@ export class EditSession extends Component {
       drill_type: drillType,
       modified: new Date(),
     };
-    fetch(`${config.API_ENDPOINT}/sessions/${this.props.location.state.specificSession.id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-        //'Authorization': `Bearer ${config.API_KEY}`
-      },
-      body: JSON.stringify(updatedSession),
-    })
+    fetch(
+      `${config.API_ENDPOINT}/sessions/${this.props.location.state.specificSession.id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          //'Authorization': `Bearer ${config.API_KEY}`
+        },
+        body: JSON.stringify(updatedSession),
+      }
+    )
       .then((res) => {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
         return res.json();
@@ -70,8 +67,8 @@ export class EditSession extends Component {
   };
 
   render() {
-    const getFolders = this.context.folders
-    const sessionDetails = this.props.location.state.specificSession
+    const getFolders = this.context.folders;
+    const sessionDetails = this.props.location.state.specificSession;
 
     return (
       <div>
@@ -93,30 +90,31 @@ export class EditSession extends Component {
 
           <section className="form-section overview-section">
             <label htmlFor="session-folder">Session Folder</label>
-            <select 
-            name="session-folder" 
-            id="session-folder" 
-            value={sessionDetails.folder_id}
-            onChange={(e) => this.setState({ folderId: e.target.value })}>
-            {getFolders.map((folder) => {
+            <select
+              name="session-folder"
+              id="session-folder"
+              value={sessionDetails.folder_id}
+              onChange={(e) => this.setState({ folderId: e.target.value })}
+            >
+              {getFolders.map((folder) => {
                 return (
                   <option key={folder.id} value={folder.id} name="folder-id">
                     {folder.title}
                   </option>
-                )
+                );
               })}
             </select>
           </section>
 
           <section className="form-section overview-section">
             <label htmlFor="session-content">Session content</label>
-            <textarea 
-            name="session-content" 
-            rows="15" 
-            value={sessionDetails.details} 
-            onChange={(e) => this.setState({ details: e.target.value })}
-            required>
-            </textarea>
+            <textarea
+              name="session-content"
+              rows="15"
+              value={sessionDetails.details}
+              onChange={(e) => this.setState({ details: e.target.value })}
+              required
+            ></textarea>
           </section>
 
           <section className="form-section session-type-section">
@@ -129,7 +127,6 @@ export class EditSession extends Component {
               className="session-type-radio"
               checked={this.state.drillType === "Runaway"}
               onChange={() => this.handleRadioButton("Runaway")}
-              
             />
             <label htmlFor="session-type-runaway">
               <span>Runaway</span>
@@ -176,11 +173,13 @@ export class EditSession extends Component {
           <section className="button-section">
             <button type="submit">Submit</button>
             <button
-            className="Session__cancel"
-            type="button"
-            onClick={() => this.handleCancel()}
-          > Cancel
-          </button>
+              className="Session__cancel"
+              type="button"
+              onClick={() => this.handleCancel()}
+            >
+              {" "}
+              Cancel
+            </button>
           </section>
         </form>
       </div>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import config from "../config";
-import "./App.css";
 import ApiContext from "../ApiContext";
 import AddFolder from "../AddFolder/AddFolder";
 import AddSession from "../AddSession/AddSession";
@@ -11,7 +10,7 @@ import Landing from "../Landing/Landing";
 import SessionDetail from "../SessionDetail/SessionDetail";
 import EditSession from "../EditSession/EditSession";
 import FolderSessions from "../FolderSessions/FolderSessions";
-import { fakeFolders } from "./fakeFolders";
+import "./App.css";
 
 class App extends Component {
   state = {
@@ -34,14 +33,14 @@ class App extends Component {
         method: "GET",
         headers: {
           "content-type": "application/json",
-          //'Authorization': `Bearer ${config.API_KEY}`
+          //'Authorization': `Bearer ${API_KEY}`
         },
       }),
       fetch(`${config.API_ENDPOINT}/folders`, {
         method: "GET",
         headers: {
           "content-type": "application/json",
-          //'Authorization': `Bearer ${config.API_KEY}`
+          //'Authorization': `Bearer ${API_KEY}`
         },
       }),
     ])
@@ -67,9 +66,9 @@ class App extends Component {
     });
   }
 
-  handleEditSession = (sessionId) => {
-    console.log(sessionId)
-  }
+  // handleEditSession = (sessionId) => {
+  //   console.log(sessionId)
+  // }
 
   handleAddSession = (session) => {
     this.setState({
@@ -137,7 +136,7 @@ class App extends Component {
       addSession: this.handleAddSession,
       deleteSession: this.handleDeleteSession,
       deleteFolder: this.handleDeleteFolder,
-      editSession: this.handleEditSession
+      // editSession: this.handleEditSession
     };
     return (
       <ApiContext.Provider value={value}>
