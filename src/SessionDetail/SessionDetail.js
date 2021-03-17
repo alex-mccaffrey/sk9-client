@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import ApiContext from "../ApiContext";
 import config from "../config";
-import { format } from "date-fns";
+//import { format } from "date-fns";
 
 class SessionDetail extends Component {
   static contextType = ApiContext;
