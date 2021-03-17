@@ -49,6 +49,7 @@ class SessionDetail extends Component {
       specificSessionArray.length > 0 ? specificSessionArray[0] : {};
     const dateString = specificSession.modified.toString();
     const modifiedDate = new Date(dateString);
+    const formattedDate = modifiedDate.toString()
 
     if (specificSessionArray.length > 0) {
       return (
@@ -58,7 +59,7 @@ class SessionDetail extends Component {
           <p>Drill Type: {specificSession.drill_type}</p>
           <div className="Session__dates">
             <div className="Session__dates-modified">
-              Modified: <span className="Date">{modifiedDate}</span>
+              Modified: <span className="Date">{formattedDate}</span>
             </div>
           </div>
           <button
