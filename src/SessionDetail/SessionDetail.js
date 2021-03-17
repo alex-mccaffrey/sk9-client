@@ -47,7 +47,7 @@ class SessionDetail extends Component {
     );
     const specificSession =
       specificSessionArray.length > 0 ? specificSessionArray[0] : {};
-    const dateString = specificSession.modified.toString();
+    const dateString = specificSession.modified;
     const modifiedDate = new Date(dateString);
     const formattedDate = modifiedDate.toString()
 

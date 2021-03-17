@@ -82,7 +82,7 @@ class App extends Component {
     console.log("this is sessionId", sessionId)
     console.log("this is state before deleting session", this.state.sessions);
     this.setState({
-      sessions: this.state.sessions.filter(session => session.id !== sessionId)
+      sessions: this.state.sessions.filter(session => session.id !== parseInt(sessionId))
     });
     console.log("this is state after deleting session", this.state.sessions);
   };
@@ -141,6 +141,25 @@ class App extends Component {
       deleteFolder: this.handleDeleteFolder,
       // editSession: this.handleEditSession
     };
+    if (this.state.loggedIn === false) {
+      return (
+        <ApiContext.Provider value={value}>
+        <div className="App">
+          <nav className="App_nav">
+            <MainNav />
+          </nav>
+          <header className="App_header">
+            <h1>
+              <Link to="/landing">SK9</Link>{" "}
+            </h1>
+            <h2>Search and Rescue K9 Training Journal</h2>
+          </header>
+          <main className="App_main"><Landing /></main>
+          <footer className="content-info">Built by Alex McCaffrey</footer>
+        </div>
+        </ApiContext.Provider>
+      )
+    }
     return (
       <ApiContext.Provider value={value}>
         <div className="App">
