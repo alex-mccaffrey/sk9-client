@@ -64,31 +64,34 @@ class App extends Component {
     this.setState({
       folders: [...this.state.folders, folder],
     });
-  }
+  };
 
   // handleEditSession = (sessionId) => {
   //   console.log(sessionId)
   // }
 
   handleAddSession = (session) => {
+    console.log("this is state before adding a sessions:", this.state.sessions)
     this.setState({
       sessions: [...this.state.sessions, session],
     });
-  }
+    console.log("this is state after adding a sessions:", this.state.sessions)
+  };
 
   handleDeleteSession = (sessionId) => {
+    console.log("this is sessionId", sessionId)
+    console.log("this is state before deleting session", this.state.sessions);
     this.setState({
-      sessions: this.state.sessions.filter(
-        (session) => session.id !== sessionId
-      ),
+      sessions: this.state.sessions.filter(session => session.id !== sessionId)
     });
-  }
+    console.log("this is state after deleting session", this.state.sessions);
+  };
 
   handleDeleteFolder = (folderId) => {
     this.setState({
       folders: this.state.folders.filter((folder) => folder.id !== folderId),
     });
-  }
+  };
 
   handleLogin = () => {
     this.setState({
@@ -98,9 +101,9 @@ class App extends Component {
 
   handleLogout = () => {
     this.setState({
-      loggedIn: false
-    })
-  }
+      loggedIn: false,
+    });
+  };
 
   renderMainRoutes() {
     if (this.state.loggedIn === false) {

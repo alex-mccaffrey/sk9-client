@@ -9,7 +9,7 @@ export class AddSession extends Component {
     title: "",
     details: "",
     folderId: 1,
-    drillType: 1,
+    drillType: "Runaway",
   };
 
   handleSubmit = (e) => {
@@ -36,7 +36,7 @@ export class AddSession extends Component {
       })
       .then((newSession) => {
         this.context.addSession(newSession);
-        this.props.history.push(`/folder/${newSession.folderId}`);
+        this.props.history.push(`/user/:userId`);
       })
       .catch((error) => {
         console.error({ error });
@@ -108,16 +108,16 @@ export class AddSession extends Component {
             />
           </section> */}
 
-          <section className="form-section session-type-section">
+<section className="form-section session-type-section">
             <h2>Select session type</h2>
             <input
               type="radio"
               name="session-type"
               id="session-type-runaway"
-              value="0"
+              value="Runaway"
               className="session-type-radio"
-              checked={this.state.drillType === 0}
-              onChange={() => this.handleRadioButton(0)}
+              checked={this.state.drillType === "Runaway"}
+              onChange={() => this.handleRadioButton("Runaway")}
             />
             <label htmlFor="session-type-runaway">
               <span>Runaway</span>
@@ -131,10 +131,10 @@ export class AddSession extends Component {
               type="radio"
               name="session-type"
               id="session-type-blind"
-              value="1"
+              value="Blind"
               className="session-type-radio"
-              checked={this.state.drillType === 1}
-              onChange={() => this.handleRadioButton(1)}
+              checked={this.state.drillType === "Blind"}
+              onChange={() => this.handleRadioButton("Blind")}
             />
             <label htmlFor="session-type-blind">
               <span>Blind</span>
@@ -148,10 +148,10 @@ export class AddSession extends Component {
               type="radio"
               name="session-type"
               id="session-type-multiple"
-              value="2"
+              value="Multiple"
               className="session-type-radio"
-              checked={this.state.drillType === 2}
-              onChange={() => this.handleRadioButton(2)}
+              checked={this.state.drillType === "Multiple"}
+              onChange={() => this.handleRadioButton("Multiple")}
             />
             <label htmlFor="session-type-multiple">
               <span>Multiple</span>
