@@ -66,25 +66,41 @@ class App extends Component {
     });
   };
 
-  // handleEditSession = (sessionId) => {
-  //   console.log(sessionId)
+  // handleEditSession = (updatedSession) => {
+  //   const sessionToUpdate = this.state.sessions.findIndex(session => session.id === parseInt(updatedSession.id))
+  //   console.log("session to update index", sessionToUpdate)
+  //   let sessionsArray = [...this.state.sessions]
+  //   console.log("new sessions array", sessionsArray)
+  //   sessionsArray[sessionToUpdate] = updatedSession
+  //   this.setState({
+  //     sessions: sessionsArray
+  //   })
+  // }
+
+  // handleEditSession = (updatedSession) => {
+  //   let sessionsArray = [...this.state.sessions]
+  //   console.log("this is the inital array", sessionsArray)
+  //   const filteredArray = sessionsArray.filter(session => session.id !== parseInt(updatedSession.id))
+  //   console.log("filtered array", filteredArray)
+  //   console.log("updated session", updatedSession)
+  //   filteredArray.push(updatedSession)
+  //   console.log("this is the updated array:", filteredArray)
+  //   this.setState({
+  //     sessions: filteredArray
+  //   })
+  //   console.log("this is the new state", this.state.sessions)
   // }
 
   handleAddSession = (session) => {
-    console.log("this is state before adding a sessions:", this.state.sessions)
     this.setState({
       sessions: [...this.state.sessions, session],
     });
-    console.log("this is state after adding a sessions:", this.state.sessions)
   };
 
   handleDeleteSession = (sessionId) => {
-    console.log("this is sessionId", sessionId)
-    console.log("this is state before deleting session", this.state.sessions);
     this.setState({
       sessions: this.state.sessions.filter(session => session.id !== parseInt(sessionId))
     });
-    console.log("this is state after deleting session", this.state.sessions);
   };
 
   handleDeleteFolder = (folderId) => {
@@ -139,7 +155,7 @@ class App extends Component {
       addSession: this.handleAddSession,
       deleteSession: this.handleDeleteSession,
       deleteFolder: this.handleDeleteFolder,
-      // editSession: this.handleEditSession
+      //editSession: this.handleEditSession
     };
     if (this.state.loggedIn === false) {
       return (

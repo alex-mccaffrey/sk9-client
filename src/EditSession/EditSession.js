@@ -7,6 +7,7 @@ export class EditSession extends Component {
   static contextType = ApiContext;
 
   state = {
+    id: null,
     title: "",
     details: "",
     folderId: 1,
@@ -14,14 +15,16 @@ export class EditSession extends Component {
   };
 
   componentDidMount() {
-    this.handleSetDrillType();
-  }
-
-  handleSetDrillType = () => {
-    this.setState({
-      drillType: this.props.location.state.specificSession.drill_type,
+    console.log("specificSession.is:", this.props.location.state.specificSession.id)
+    const { id, title, details, folder_id, drill_type } = this.props.location.state.specificSession;
+    this.setState ({
+      id,
+      title,
+      details,
+      folderId: folder_id,
+      drillType: drill_type,
     });
-  };
+}
 
   handleCancel = () => {
     this.props.history.push("/user/:userId");
@@ -33,15 +36,16 @@ export class EditSession extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { title, details, folderId, drillType } = this.state;
-    //const timeNow = new Date()
+    const { id, title, details, folderId, drillType } = this.state;
     const updatedSession = {
+      id,
       title,
       details,
       folder_id: folderId,
       drill_type: drillType,
       modified: new Date(),
     };
+    console.log("this is the updatedSession in edit session", updatedSession)
     fetch(
       `${config.API_ENDPOINT}/sessions/${this.props.location.state.specificSession.id}`,
       {
@@ -50,16 +54,18 @@ export class EditSession extends Component {
           "content-type": "application/json",
           //'Authorization': `Bearer ${config.API_KEY}`
         },
-        body: JSON.stringify(updatedSession),
+        body: JSON.stringify(updatedSession)
       }
     )
       .then((res) => {
+        console.log("this is the res", res)
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
         return res.json();
       })
       .then((updatedSession) => {
+        console.log("this is the updatedSession in the last promise", updatedSession)
         this.context.editSession(updatedSession);
-        this.props.history.push(`/session/${updatedSession.id}`);
+        this.props.history.push(`/user/:userId}`);
       })
       .catch((error) => {
         console.error({ error });
@@ -68,7 +74,6 @@ export class EditSession extends Component {
 
   render() {
     const getFolders = this.context.folders;
-    const sessionDetails = this.props.location.state.specificSession;
 
     return (
       <div>
@@ -82,7 +87,7 @@ export class EditSession extends Component {
               type="text"
               name="session-title"
               placeholder="Session Title"
-              value={sessionDetails.title}
+              value={this.state.title}
               onChange={(e) => this.setState({ title: e.target.value })}
               required
             />
@@ -93,7 +98,7 @@ export class EditSession extends Component {
             <select
               name="session-folder"
               id="session-folder"
-              value={sessionDetails.folder_id}
+              value={this.state.folderId}
               onChange={(e) => this.setState({ folderId: e.target.value })}
             >
               {getFolders.map((folder) => {
@@ -111,7 +116,7 @@ export class EditSession extends Component {
             <textarea
               name="session-content"
               rows="15"
-              value={sessionDetails.details}
+              value={this.state.details}
               onChange={(e) => this.setState({ details: e.target.value })}
               required
             ></textarea>

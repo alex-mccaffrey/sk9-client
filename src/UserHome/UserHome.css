@@ -1,3 +1,10 @@
 li {
     list-style-type: none;
+    margin: 20px;
+}
+
+ul {
+    background-color: #bbb;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }

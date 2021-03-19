@@ -17,6 +17,7 @@ export class UserHome extends Component {
         <header role="banner">
           <h2>Check out your Folders</h2>
         </header>
+        <ul>
         {this.context.folders.map((folder) => {
           return (
             <li key={folder.id}>
@@ -30,6 +31,7 @@ export class UserHome extends Component {
             </li>
           );
         })}
+        </ul>
       </main>
     );
   }
