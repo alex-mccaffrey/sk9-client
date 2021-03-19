@@ -27,8 +27,8 @@ export class landing extends Component {
             efforts for all aspects of life. Knowing what works and what
             doesn't. Every dog team is different. SK9 provides a resource to
             track your training sessions, from obedience and SAR sessions, to
-            random life events that needs arise. This helps focus training
-            efforts improve the quality of future training sessions. All of this
+            random life events. This helps focus training
+            efforts and improve the quality of future training sessions. All of this
             leads to an unbreakable bond and an unstoppable canine.
           </p>
         </section>
@@ -41,6 +41,12 @@ export class landing extends Component {
             progress and pitfalls so that you can recognize patterns. SK9
             provides a simple interface to track training sessions to recognize
             those patterns.
+          </p>
+          <p>
+            Handlers have the ability to create folders to help organize their thoughts and training sessions. For example, they could be broken down by dog, time of year, who you trained with, or type of training.
+          </p>
+          <p>
+            Handlers also have the ability to add training sessions to folders. These sessions include a title for quick reference, details about the training session (think who, what, where, why), drill type, and when the session was created or modified last.
           </p>
         </section>
         <section>

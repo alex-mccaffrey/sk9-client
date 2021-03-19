@@ -51,9 +51,7 @@ export class AddSession extends Component {
     const getFolders = this.context.folders
     return (
       <div>
-        <header>
           <h2>Add a Session</h2>
-        </header>
         <form id="new-session" onSubmit={this.handleSubmit}>
           <section className="form-section overview-section">
             <label htmlFor="session-title">Session Title</label>

@@ -1,10 +1,23 @@
 li {
     list-style-type: none;
     margin: 20px;
+    color: black
 }
 
 ul {
-    background-color: #bbb;
+    max-width: 600px;
+    margin: auto;
+    border: 5px solid;
+    border-radius: 15px;
     padding-top: 5%;
     padding-bottom: 5%;
+    background-color: #CBBEB3;
+}
+
+li a:link{
+    color: black;
+}
+
+li a:visited {
+    color: black;
 }

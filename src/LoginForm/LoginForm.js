@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
 import ApiContext from "../ApiContext";
 import UserHome from '../UserHome/UserHome';
+import "./LoginForm.css"
 
 export class LoginForm extends Component {
 
@@ -17,10 +18,8 @@ export class LoginForm extends Component {
   render() {
     return (
       <div>
-        <section>
-          <header>
+        <section className="login-section">
             <h3>Sign In</h3>
-          </header>
           <button className="login-button" onClick={this.handleLogin}>Login to Demo Account</button>
           {/* <form className="login-form">
             <p>

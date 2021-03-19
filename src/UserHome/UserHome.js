@@ -14,9 +14,7 @@ export class UserHome extends Component {
   render() {
     return (
       <main role="main">
-        <header role="banner">
           <h2>Check out your Folders</h2>
-        </header>
         <ul>
         {this.context.folders.map((folder) => {
           return (

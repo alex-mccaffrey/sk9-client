@@ -77,9 +77,7 @@ export class EditSession extends Component {
 
     return (
       <div>
-        <header>
           <h2>Edit your Session</h2>
-        </header>
         <form id="new-session" onSubmit={this.handleSubmit}>
           <section className="form-section overview-section">
             <label htmlFor="session-title">Session Title</label>

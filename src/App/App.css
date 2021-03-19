@@ -1,4 +1,4 @@
-* {
+/* * {
     box-sizing: border-box;
   }
   
@@ -68,4 +68,91 @@
     content: "here"
   }
 
- 
+  */
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+    font-family: Verdana;
+  }
+  
+  nav, main, footer {
+    padding: 20px;
+  }
+
+  header {
+    padding: 5px;
+  }
+
+
+  header h2 {
+    color: white;
+    font-size: 20px;
+  }
+
+  header a{
+    font-size: 50px;
+    font-family: Georgia;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+  }
+  
+  nav, header, footer {
+    background-color: #69626D;
+    color: white;
+  }
+  
+  h1,h2,h3 {
+    font-family: Georgia;
+    font-size: 30px;
+    margin: 20px 0;
+  }
+  
+  h2, h3 {
+    color: #69626D;
+  }
+  
+  img {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+  }
+  
+  form {
+    margin: 20px;
+    border: 2px solid steelblue;
+    padding: 20px;
+  }
+  
+  form p {
+    margin: 10px;
+  }
+  
+  form input {
+    font-size: 20px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    border: 1px solid steelblue;
+  }
+  
+  form button {
+    background-color: steelblue;
+    border: 0px;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    margin: 0 10px;
+  }
+  
+  form button.cancel {
+    background-color: #999;
+  }

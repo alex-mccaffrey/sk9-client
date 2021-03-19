@@ -13,9 +13,11 @@ export class MainNav extends Component {
           <Link className='text-link' to="/user/:userId">Home</Link>
           <Link className='text-link' to="/add-session">Add a Session</Link>
           <Link className='text-link' to="/add-folder">Add a Folder</Link>
-          <button onClick={() => this.context.logout()}>
-          <Link to="/landing">Logout</Link>
+          <div className="logout">
+          <button className="logout-button" onClick={() => this.context.logout()}>
+          <Link to="/landing" className="logout-text">Logout</Link>
           </button>
+          </div>
         </>
       );
     }
