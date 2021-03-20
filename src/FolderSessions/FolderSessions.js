@@ -47,11 +47,11 @@ export class FolderSessions extends Component {
           ))}
         </ul>
         <button
-          className="Session__delete"
+          className="Folder__delete"
           type="button"
           onClick={() => this.handleClickDelete(this.context.selectedFolder)}
         >
-          Delete
+          Delete Folder
         </button>
       </div>
     );

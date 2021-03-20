@@ -156,3 +156,9 @@
   form button.cancel {
     background-color: #999;
   }
+
+
+  .koda-logo {
+    max-width: 100px;
+    border-radius: 20px;
+  }

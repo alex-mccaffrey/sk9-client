@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import ApiContext from "../ApiContext";
 import config from "../config";
+import "./SessionDetail.css"
 //import { format } from "date-fns";
 
 class SessionDetail extends Component {
@@ -54,20 +55,18 @@ class SessionDetail extends Component {
     if (specificSessionArray.length > 0) {
       return (
         <main role="main">
-          <h2 className="Session__title">Title: {specificSession.title}</h2>
+          <h2 className="Session__title">{specificSession.title}</h2>
           <p>{specificSession.details}</p>
-          <p>Drill Type: {specificSession.drill_type}</p>
-          <div className="Session__dates">
-            <div className="Session__dates-modified">
-              Modified: <span className="Date">{formattedDate}</span>
-            </div>
-          </div>
+          <p><h4>Drill Type:</h4> {specificSession.drill_type}</p>
+            <p className="Session__dates-modified">
+              <h4>Modified:</h4> <span className="Date">{formattedDate}</span>
+            </p>
           <button
-            className="Session__delete"
+            className="session-delete"
             type="button"
             onClick={() => this.handleClickDelete(specificSession)}
           >
-            Delete
+            Delete Session
           </button>
           {/* <button
             className="Session__edit"
@@ -77,7 +76,7 @@ class SessionDetail extends Component {
             Edit
           </button> */}
           <button
-            className="Session__add"
+            className="session-add"
             type="button"
             onClick={() => this.handleAddClick()}
           >

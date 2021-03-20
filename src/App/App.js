@@ -11,6 +11,7 @@ import SessionDetail from "../SessionDetail/SessionDetail";
 import EditSession from "../EditSession/EditSession";
 import FolderSessions from "../FolderSessions/FolderSessions";
 import "./App.css";
+import Koda from "../Images/Koda3.jpg"
 
 class App extends Component {
   state = {
@@ -169,6 +170,7 @@ class App extends Component {
               <Link to="/landing">SK9</Link>{" "}
             </h1>
             <h2>Search and Rescue K9 Training Journal</h2>
+            <img src={Koda} className="koda-logo" alt="dog logo" />
           </header>
           <main className="App_main"><Landing /></main>
           <footer className="content-info">Built by Alex McCaffrey</footer>
@@ -187,6 +189,7 @@ class App extends Component {
               <Link to="/landing">SK9</Link>{" "}
             </h1>
             <h2>Search and Rescue K9 Training Journal</h2>
+            <img src={Koda} className="koda-logo" alt="dog logo" />
           </header>
           <main className="App_main">{this.renderMainRoutes()}</main>
           <footer className="content-info">Built by Alex McCaffrey</footer>
