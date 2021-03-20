@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ApiContext from "../ApiContext";
 import config from "../config";
+import "./AddSession.css"
 
 export class AddSession extends Component {
   static contextType = ApiContext;
@@ -54,7 +55,7 @@ export class AddSession extends Component {
           <h2>Add a Session</h2>
         <form id="new-session" onSubmit={this.handleSubmit}>
           <section className="form-section overview-section">
-            <label htmlFor="session-title">Session Title</label>
+            <label htmlFor="session-title" className="session-title">Session Title</label>
             <br />
             <input
               type="text"
@@ -67,7 +68,7 @@ export class AddSession extends Component {
           </section>
 
           <section className="form-section overview-section">
-            <label htmlFor="session-folder">Session Folder</label>
+            <label htmlFor="session-folder" className="session-folder">Session Folder</label>
             <br />
             <select
               name="session-folder"
@@ -85,7 +86,7 @@ export class AddSession extends Component {
           </section>
 
           <section className="form-section overview-section">
-            <label htmlFor="session-content">Session content</label>
+            <label htmlFor="session-content" className="session-content">Session content</label>
             <br />
             <textarea
               value={this.state.details}
@@ -107,7 +108,8 @@ export class AddSession extends Component {
           </section> */}
 
 <section className="form-section session-type-section">
-            <h2>Select session type</h2>
+<label htmlFor="session-type" className="session-type">Select session type</label>
+<br />
             <input
               type="radio"
               name="session-type"
@@ -196,7 +198,6 @@ export class AddSession extends Component {
 
           <section className="button-section">
             <button type="submit">Submit</button>
-            <button type="reset">Reset</button>
           </section>
         </form>
       </div>

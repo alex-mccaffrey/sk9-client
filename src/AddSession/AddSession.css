@@ -1,0 +1,32 @@
+.session-title .session-folder .session-content .session-type{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px;
+}
+
+
+input[type=text] {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+
+label {
+    font-size: 25px;
+}
+
+
+select {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+textarea {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+
+.button-section {
+    margin-top: 25px;
+}

@@ -8,6 +8,14 @@ import { getSessionsForFolder } from "../sessions-helpers";
 export class FolderSessions extends Component {
   static contextType = ApiContext;
 
+  handleGoBack = (e) => {
+    this.props.history.push("/user/:userId");
+  }
+
+  handleAddClick = () => {
+    this.props.history.push("/add-session");
+  };
+
   handleClickDelete = (e) => {
     const folderId = this.context.selectedFolder.id;
 
@@ -36,7 +44,24 @@ export class FolderSessions extends Component {
     const sessionsForFolder = getSessionsForFolder(sessions, folderId);
     if (sessionsForFolder.length === 0 ) {
       return (
+        <>
         <h2>This Folder is Empty</h2>
+        <button onClick={() => this.handleGoBack()}>Go Back</button>
+        <button
+            className="session-add"
+            type="button"
+            onClick={() => this.handleAddClick()}
+          >
+            Add Session
+          </button>
+          <button
+          className="Folder__delete"
+          type="button"
+          onClick={() => this.handleClickDelete(this.context.selectedFolder)}
+        >
+          Delete Folder
+        </button>
+        </>
       )
     }
     return (
@@ -51,6 +76,10 @@ export class FolderSessions extends Component {
             </li>
           ))}
         </ul>
+        <button 
+         className="go-back"
+         type="button"
+         onClick={() => this.handleGoBack()}>Go Back</button>
         <button
           className="Folder__delete"
           type="button"
@@ -58,6 +87,13 @@ export class FolderSessions extends Component {
         >
           Delete Folder
         </button>
+        <button
+            className="session-add"
+            type="button"
+            onClick={() => this.handleAddClick()}
+          >
+            Add Session
+          </button>
       </div>
     );
   }

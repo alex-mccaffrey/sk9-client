@@ -52,7 +52,6 @@ export class AddFolder extends Component {
           </section>
           <section className="button-section">
             <button type="submit">Submit</button>
-            <button type="reset">Reset</button>
           </section>
         </form>
       </div>

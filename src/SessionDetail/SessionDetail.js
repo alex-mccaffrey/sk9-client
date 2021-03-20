@@ -54,13 +54,15 @@ class SessionDetail extends Component {
 
     if (specificSessionArray.length > 0) {
       return (
-        <main role="main">
+        <div>
+        <section className="details">
           <h2 className="Session__title">{specificSession.title}</h2>
           <p>{specificSession.details}</p>
           <p><h4>Drill Type:</h4> {specificSession.drill_type}</p>
             <p className="Session__dates-modified">
               <h4>Modified:</h4> <span className="Date">{formattedDate}</span>
             </p>
+            <section className="buttons">
           <button
             className="session-delete"
             type="button"
@@ -82,7 +84,9 @@ class SessionDetail extends Component {
           >
             Add Session
           </button>
-        </main>
+          </section>
+        </section>
+        </div>
       );
     }
     return (

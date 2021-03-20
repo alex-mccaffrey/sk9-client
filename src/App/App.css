@@ -81,10 +81,18 @@
     font-family: Verdana;
   }
   
-  nav, main, footer {
+  main, footer {
     padding: 20px;
   }
 
+  nav, header, footer {
+    background-color: #69626D;
+    color: white;
+  }
+
+  nav {
+    padding-bottom: 10px;
+  }
 
   header {
     padding: 5px;
@@ -113,11 +121,7 @@
     color: white;
     font-size: 15px;
   }
-  
-  nav, header, footer {
-    background-color: #69626D;
-    color: white;
-  }
+
   
   h1,h2,h3 {
     font-family: Georgia;
@@ -137,7 +141,7 @@
   
   form {
     margin: 20px;
-    border: 2px solid steelblue;
+    border: 2px solid #69626D;
     padding: 20px;
   }
   
@@ -149,11 +153,11 @@
     font-size: 20px;
     padding: 10px 5px;
     border-radius: 5px;
-    border: 1px solid steelblue;
+    border: 1px solid #69626D;
   }
   
   form button {
-    background-color: steelblue;
+    background-color: #69626D;
     border: 0px;
     padding: 10px 20px;
     color: white;
