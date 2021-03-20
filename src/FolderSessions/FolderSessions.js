@@ -34,6 +34,11 @@ export class FolderSessions extends Component {
     const folderId = this.context.selectedFolder.id;
     const sessions = this.context.sessions;
     const sessionsForFolder = getSessionsForFolder(sessions, folderId);
+    if (sessionsForFolder.length === 0 ) {
+      return (
+        <h2>This Folder is Empty</h2>
+      )
+    }
     return (
       <div>
         <h2>

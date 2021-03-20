@@ -1,22 +1,33 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import ApiContext from '../ApiContext'
+import ApiContext from "../ApiContext";
 import "./MainNav.css";
 
 export class MainNav extends Component {
-    static contextType = ApiContext
+  static contextType = ApiContext;
 
   renderLoggedInLinks() {
     if (this.context.loggedIn) {
       return (
         <>
-          <Link className='text-link' to="/user/:userId">Home</Link>
-          <Link className='text-link' to="/add-session">Add a Session</Link>
-          <Link className='text-link' to="/add-folder">Add a Folder</Link>
+          <Link className="text-link" to="/user/:userId">
+            Home
+          </Link>
+          <Link className="text-link" to="/add-session">
+            Add a Session
+          </Link>
+          <Link className="text-link" to="/add-folder">
+            Add a Folder
+          </Link>
           <div className="logout">
-          <button className="logout-button" onClick={() => this.context.logout()}>
-          <Link to="/landing" className="logout-text">Logout</Link>
-          </button>
+            <button
+              className="logout-button"
+              onClick={() => this.context.logout()}
+            >
+              <Link to="/landing" className="logout-text">
+                Logout
+              </Link>
+            </button>
           </div>
         </>
       );
@@ -24,12 +35,23 @@ export class MainNav extends Component {
   }
 
   render() {
-
     return (
-      <div className="main-nav-links">
-        <Link className='text-link' to="/">Welcome</Link>
-        {this.renderLoggedInLinks()}
-      </div>
+      // <div className="main-nav-links">
+      //   <Link className='text-link' to="/">Welcome</Link>
+      //   {this.renderLoggedInLinks()}
+      // </div>
+      <nav role="navigation">
+        <div id="menuToggle">
+          <input type="checkbox" />
+          <span></span>
+          <span></span>
+          <span></span>
+          <ul id="menu">
+          <Link className='text-link' to="/">Welcome</Link>
+           {this.renderLoggedInLinks()}
+          </ul>
+        </div>
+      </nav>
     );
   }
 }
