@@ -23,15 +23,15 @@ Handlers also have the ability to add training sessions to folders. These sessio
 
 ### A Landing Page for 
 
-![landing-page](./Images/landing.jpeg)
+![landing-page](./src/Images/landing.jpeg)
 
 ### User Dashboard
 
-![dashboard](./Images/folders.jpeg)
+![dashboard](./src/Images/folders.jpeg)
 
 ### Add a New Session
 
-![add-session](./Images/add-session.jpeg)
+![add-session](./src/Images/add-session.jpeg)
 
 
 ## Technologies
