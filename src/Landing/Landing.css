@@ -1,4 +1,9 @@
-section {
-    display: flex;
-    flex-direction: row;
+
+
+.landing-p {
+    display: inline-flex;
+    /* justify-content: center; */
+    max-width: 75%;
+    align-items: center;
+    margin-bottom: 15px;
 }
