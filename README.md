@@ -21,17 +21,17 @@ Handlers also have the ability to add training sessions to folders. These sessio
 
 ## Screenshots
 
-### A Landing Page for 
+### Landing Page 
 
-<img src="./src/Images/landing.jpeg" alt="sk9 landing page" width="400" alt>
+<img src="./src/Images/landing.jpeg" alt="sk9 landing page" width="450" >
 
 ### User Dashboard
 
-![dashboard](./src/Images/folders.jpeg)
+<img src="./src/Images/folders.jpeg" alt="sk9 user dashboard" width="450" >
 
 ### Add a New Session
 
-![add-session](./src/Images/add-session.jpeg)
+<img src="./src/Images/add-session.jpeg" alt="add session" width="450" >
 
 
 ## Technologies
