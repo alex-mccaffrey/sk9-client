@@ -1,6 +1,7 @@
 # SK9 - Search and Rescue K9 Training Journal
 
 Live app: (https://sk9.vercel.app/)
+<br />
 API Repo: (https://github.com/amccaff20/sk9-api)
 
 ## Table of Contents
