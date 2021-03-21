@@ -38,7 +38,7 @@ export class MainNav extends Component {
     return (
       <nav role="navigation">
         <div id="menuToggle">
-          <input type="checkbox" />
+          <input type="checkbox" label=""/>
           <span></span>
           <span></span>
           <span></span>
