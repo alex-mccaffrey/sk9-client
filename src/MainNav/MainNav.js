@@ -36,10 +36,6 @@ export class MainNav extends Component {
 
   render() {
     return (
-      // <div className="main-nav-links">
-      //   <Link className='text-link' to="/">Welcome</Link>
-      //   {this.renderLoggedInLinks()}
-      // </div>
       <nav role="navigation">
         <div id="menuToggle">
           <input type="checkbox" />
@@ -47,8 +43,10 @@ export class MainNav extends Component {
           <span></span>
           <span></span>
           <ul id="menu">
-          <Link className='text-link' to="/">Welcome</Link>
-           {this.renderLoggedInLinks()}
+            <Link className="text-link" to="/">
+              Welcome
+            </Link>
+            {this.renderLoggedInLinks()}
           </ul>
         </div>
       </nav>

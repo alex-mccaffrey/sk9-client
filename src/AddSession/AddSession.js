@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ApiContext from "../ApiContext";
 import config from "../config";
-import "./AddSession.css"
+import "./AddSession.css";
 
 export class AddSession extends Component {
   static contextType = ApiContext;
@@ -27,7 +27,6 @@ export class AddSession extends Component {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        //'Authorization': `Bearer ${config.API_KEY}`
       },
       body: JSON.stringify(newSession),
     })
@@ -49,13 +48,15 @@ export class AddSession extends Component {
   };
 
   render() {
-    const getFolders = this.context.folders
+    const getFolders = this.context.folders;
     return (
       <div>
-          <h2>Add a Session</h2>
+        <h2>Add a Session</h2>
         <form id="new-session" onSubmit={this.handleSubmit}>
           <section className="form-section overview-section">
-            <label htmlFor="session-title" className="session-title">Session Title</label>
+            <label htmlFor="session-title" className="session-title">
+              Session Title
+            </label>
             <br />
             <input
               type="text"
@@ -68,7 +69,9 @@ export class AddSession extends Component {
           </section>
 
           <section className="form-section overview-section">
-            <label htmlFor="session-folder" className="session-folder">Session Folder</label>
+            <label htmlFor="session-folder" className="session-folder">
+              Session Folder
+            </label>
             <br />
             <select
               name="session-folder"
@@ -80,13 +83,15 @@ export class AddSession extends Component {
                   <option key={folder.id} value={folder.id} name="folder-id">
                     {folder.title}
                   </option>
-                )
+                );
               })}
             </select>
           </section>
 
           <section className="form-section overview-section">
-            <label htmlFor="session-content" className="session-content">Session content</label>
+            <label htmlFor="session-content" className="session-content">
+              Session content
+            </label>
             <br />
             <textarea
               value={this.state.details}
@@ -97,19 +102,12 @@ export class AddSession extends Component {
               required
             ></textarea>
           </section>
-          {/* <section className="search-time-container form-section">
-            <label htmlFor="distance-searched">Search Distance (miles)</label>
-            <input
-              type="number"
-              name="distance-searched"
-              id="distance-searched"
-              placeholder="1"
-            />
-          </section> */}
 
-<section className="form-section session-type-section">
-<label htmlFor="session-type" className="session-type">Select session type</label>
-<br />
+          <section className="form-section session-type-section">
+            <label htmlFor="session-type" className="session-type">
+              Select session type
+            </label>
+            <br />
             <input
               type="radio"
               name="session-type"
@@ -160,41 +158,6 @@ export class AddSession extends Component {
               </p>
             </label>
           </section>
-
-          {/* <section className="form-section">
-            <label className="dream-date-label" htmlFor="date-month">
-              Date of Session
-            </label>
-            <input
-              type="number"
-              name="date-month"
-              id="date-month"
-              placeholder="01"
-              min="1"
-              max="12"
-              required=""
-            />{" "}
-            .
-            <input
-              type="number"
-              name="date-day"
-              className="date-day"
-              placeholder="01"
-              min="1"
-              max="31"
-              required=""
-            />{" "}
-            .
-            <input
-              type="number"
-              name="date-year"
-              className="date-year"
-              placeholder="2017"
-              min="2016"
-              max="2017"
-              required=""
-            />
-          </section> */}
 
           <section className="button-section">
             <button type="submit">Submit</button>

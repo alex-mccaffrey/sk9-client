@@ -23,7 +23,6 @@ export class FolderSessions extends Component {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
-        //'Authorization': `Bearer ${API_KEY}`
       },
     })
       .then((res) => {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import ApiContext from "../ApiContext";
 import config from "../config";
-import "./SessionDetail.css"
+import "./SessionDetail.css";
 //import { format } from "date-fns";
 
 class SessionDetail extends Component {
@@ -12,13 +12,6 @@ class SessionDetail extends Component {
     this.props.history.push("/add-session");
   };
 
-  // handleEditClick = (specificSession) => {
-  //   this.props.history.push({
-  //     pathname: "/edit-session",
-  //     state: { specificSession },
-  //   });
-  // };
-
   handleClickDelete = (e) => {
     const sessionId = this.props.match.params.sessionId;
 
@@ -26,7 +19,6 @@ class SessionDetail extends Component {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
-        //'Authorization': `Bearer ${API_KEY}`
       },
     })
       .then((res) => {
@@ -50,42 +42,33 @@ class SessionDetail extends Component {
       specificSessionArray.length > 0 ? specificSessionArray[0] : {};
     const dateString = specificSession.modified;
     const modifiedDate = new Date(dateString);
-    const formattedDate = modifiedDate.toString()
+    const formattedDate = modifiedDate.toString();
 
     if (specificSessionArray.length > 0) {
       return (
         <div>
-        <section className="details">
-          <h2 className="Session__title">{specificSession.title}</h2>
-          <p>{specificSession.details}</p>
-          <p><h4>Drill Type:</h4> {specificSession.drill_type}</p>
-            <p className="Session__dates-modified">
-              <h4>Modified:</h4> <span className="Date">{formattedDate}</span>
-            </p>
+          <section className="details">
+            <h2 className="Session__title">{specificSession.title}</h2>
+            <p>{specificSession.details}</p>
+            <h4>Drill Type:</h4> {specificSession.drill_type}
+            <h4>Modified:</h4> <span className="Date">{formattedDate}</span>
             <section className="buttons">
-          <button
-            className="session-delete"
-            type="button"
-            onClick={() => this.handleClickDelete(specificSession)}
-          >
-            Delete Session
-          </button>
-          {/* <button
-            className="Session__edit"
-            type="button"
-            onClick={() => this.handleEditClick(specificSession)}
-          >
-            Edit
-          </button> */}
-          <button
-            className="session-add"
-            type="button"
-            onClick={() => this.handleAddClick()}
-          >
-            Add Session
-          </button>
+              <button
+                className="session-delete"
+                type="button"
+                onClick={() => this.handleClickDelete(specificSession)}
+              >
+                Delete Session
+              </button>
+              <button
+                className="session-add"
+                type="button"
+                onClick={() => this.handleAddClick()}
+              >
+                Add Session
+              </button>
+            </section>
           </section>
-        </section>
         </div>
       );
     }

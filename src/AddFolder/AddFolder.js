@@ -16,7 +16,6 @@ export class AddFolder extends Component {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        //'Authorization': `Bearer ${API_KEY}`
       },
       body: JSON.stringify(newFolder),
     })
