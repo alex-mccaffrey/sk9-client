@@ -23,7 +23,8 @@ Handlers also have the ability to add training sessions to folders. These sessio
 
 ### A Landing Page for 
 
-![landing-page](./src/Images/landing.jpeg)
+
+![landing-page]<img src="./src/Images/landing.jpeg" align="left" width="200" >
 
 ### User Dashboard
 
