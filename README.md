@@ -43,3 +43,8 @@ For this app, I used:
 - Node.js
 - PostgreSQL
 - Express
+
+
+## Upcoming Features:
+- User registration and login
+- Ability to edit sessions after they are created
