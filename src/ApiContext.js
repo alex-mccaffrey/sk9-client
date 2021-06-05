@@ -9,6 +9,7 @@ export default React.createContext({
   deleteSession: () => {},
   deleteFolder: () => {},
   editSession: () => {},
+  loggedInState: "",
 })
 
   
