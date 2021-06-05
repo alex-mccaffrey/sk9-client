@@ -12,6 +12,13 @@ class SessionDetail extends Component {
     this.props.history.push("/add-session");
   };
 
+  // handleEditClick = (specificSession) => {
+  //   this.props.history.push({
+  //     pathname: "/edit-session",
+  //     state: { specificSession },
+  //   });
+  // };
+
   handleClickDelete = (e) => {
     const sessionId = this.props.match.params.sessionId;
 
@@ -60,6 +67,13 @@ class SessionDetail extends Component {
               >
                 Delete Session
               </button>
+              {/* <button
+                className="Session__edit"
+                type="button"
+                onClick={() => this.handleEditClick(specificSession)}
+              >
+                Edit
+              </button> */}
               <button
                 className="session-add"
                 type="button"

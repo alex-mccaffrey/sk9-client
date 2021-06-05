@@ -11,6 +11,7 @@ import SessionDetail from "../SessionDetail/SessionDetail";
 import FolderSessions from "../FolderSessions/FolderSessions";
 import "./App.css";
 import Koda from "../Images/Koda3.jpg";
+// import EditSession from "../EditSession/EditSession"
 
 class App extends Component {
   state = {
@@ -84,6 +85,14 @@ class App extends Component {
     });
   };
 
+  // handleEditSession = (sessionId) => [
+  //   this.setState({
+  //     sessions: this.state.sessions.filter(
+  //       (session) => session.id !== parseInt(sessionId)
+  //     )
+  //   })
+  // ]
+
   handleLogin = () => {
     this.setState({
       loggedIn: true,
@@ -112,6 +121,7 @@ class App extends Component {
         <Route path="/session/:sessionId" component={SessionDetail} />
         <Route path="/add-folder" component={AddFolder} />
         <Route path="/add-session" component={AddSession} />
+        {/* <Route path="/edit-session" component={EditSession} /> */}
       </>
     );
   }
@@ -129,6 +139,7 @@ class App extends Component {
       addSession: this.handleAddSession,
       deleteSession: this.handleDeleteSession,
       deleteFolder: this.handleDeleteFolder,
+      // editSession: this.handleEditSession,
     };
     if (this.state.loggedIn === false) {
       return (
