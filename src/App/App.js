@@ -9,7 +9,9 @@ import UserHome from "../UserHome/UserHome";
 import Landing from "../Landing/Landing";
 import SessionDetail from "../SessionDetail/SessionDetail";
 import FolderSessions from "../FolderSessions/FolderSessions";
+import PrivateRoute from "../services/PrivateRoute";
 import "./App.css";
+import PageNotFound from "../PageNotFound/PageNotFound";
 import Koda from "../Images/Koda3.jpg";
 // import EditSession from "../EditSession/EditSession"
 
