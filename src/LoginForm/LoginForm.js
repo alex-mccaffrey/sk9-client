@@ -15,16 +15,46 @@ export class LoginForm extends Component {
 
   render() {
     return (
-      <div>
-        <section className="login-section">
-          <h3>Sign In</h3>
-          <button className="login-button" onClick={this.handleLogin}>
-            Login to Demo Account
-          </button>
-          {this.context.loggedIn ? <UserHome /> : null}
-        </section>
-      </div>
-    );
+    //   <div>
+    //     <section className="login-section">
+    //       <h3>Sign In</h3>
+    //       <button className="login-button" onClick={this.handleLogin}>
+    //         Login to Demo Account
+    //       </button>
+    //       {this.context.loggedIn ? <UserHome /> : null}
+    //     </section>
+    //   </div>
+    // );
+    <section className="login">
+      {loggedInState === "logging in" ? <Spinner /> : ""}
+      <h3>Login</h3>
+      {error && (
+        <p className="error" style={{ color: "red" }}>
+          {error}
+        </p>
+      )}
+      <p>Demo Account: Username "Demo", Password "DemoPassword123!"</p>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password" 
+          />
+        </div>
+        <button type="submit">Sign In</button>
+      </form>
+    </section>
+  );
   }
 }
 
